@@ -30,7 +30,7 @@ jobs:
             if [ -d ".git" ]; then
               git pull origin main
             else
-              git clone https://github.com/yourusername/monitoring-stack.git .
+              git clone https://github.com/MCORicky/monitoring-stack.git .
             fi
             # Deploy your Docker Compose stack
             docker-compose pull
