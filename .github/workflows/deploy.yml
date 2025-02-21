@@ -1,0 +1,34 @@
+name: Deploy Monitoring Stack
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: mcoricky.duckdns.org
+          username: ricky
+          port: 22
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            # Navigate to your deployment directory
+            cd /home/ricky/monitoring-stack
+            # If the repository is already cloned, update it; otherwise, clone it
+            if [ -d ".git" ]; then
+              git pull origin main
+            else
+              git clone https://github.com/yourusername/monitoring-stack.git .
+            fi
+            # Deploy your Docker Compose stack
+            docker-compose pull
+            docker-compose up -d
