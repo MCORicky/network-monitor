@@ -28,7 +28,7 @@ jobs:
             if [ -d ".git" ]; then
             git pull origin main
             else
-            git clone https://${{ secrets.GH_TOKEN }}@github.com/MCORicky/monitoring-stack.git .
+            git clone https://${{ secrets.GH_TOKEN }}@github.com/MCORicky/network-monitor.git .
              fi
              docker-compose pull
             docker-compose up -d
