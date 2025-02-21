@@ -1,0 +1,4 @@
+# Ignore Docker volumes and temporary files
+docker-compose.override.yml
+*.log
+.env
