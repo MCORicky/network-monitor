@@ -24,14 +24,11 @@ jobs:
           port: 22
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            # Navigate to your deployment directory
             cd /home/ricky/monitoring-stack
-            # If the repository is already cloned, update it; otherwise, clone it
             if [ -d ".git" ]; then
-              git pull origin main
+            git pull origin main
             else
-              git clone https://github.com/MCORicky/monitoring-stack.git .
-            fi
-            # Deploy your Docker Compose stack
-            docker-compose pull
+            git clone https://${{ secrets.GH_TOKEN }}@github.com/MCORicky/monitoring-stack.git .
+             fi
+             docker-compose pull
             docker-compose up -d
