@@ -26,6 +26,7 @@ services:
     volumes:
       - ./loki/local-config.yaml:/etc/loki/local-config.yaml
       - ./loki/data:/loki
+      - ./loki/wal:/wal
     ports:
       - "3100:3100"
 
