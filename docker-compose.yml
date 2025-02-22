@@ -41,5 +41,10 @@ services:
       - ./promtail/promtail-config.yaml:/etc/promtail/promtail-config.yaml
     command: -config.file=/etc/promtail/promtail-config.yaml
 
+  dashboard:
+    build: ./dashboard
+    container_name: dashboard
+    ports:
+      - "8080:80"
 volumes:
   grafana_data:
