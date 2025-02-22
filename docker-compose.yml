@@ -25,7 +25,9 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     volumes:
       - ./loki/local-config.yaml:/etc/loki/local-config.yaml
-      - ./loki/data:/loki
+      - ./loki/index:/loki/index
+      - ./loki/cache:/loki/cache
+      - ./loki/chunks:/loki/chunks
       - ./loki/wal:/wal
       - ./loki/compactor:/loki/compactor
     ports:
