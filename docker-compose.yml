@@ -27,6 +27,7 @@ services:
       - ./loki/local-config.yaml:/etc/loki/local-config.yaml
       - ./loki/data:/loki
       - ./loki/wal:/wal
+      - ./loki/compactor:/loki/compactor
     ports:
       - "3100:3100"
 
