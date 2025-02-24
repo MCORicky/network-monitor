@@ -6,3 +6,19 @@ scrape_configs:
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
+
+  - job_name: 'snmp'
+    metrics_path: /snmp
+    params:
+      module: [if_mib]  # Name of the module in your snmp.yml
+    static_configs:
+      - targets:
+          - "192.168.0.165"  # Replace with your device's IP
+          - "192.168.0.159"  # Add additional device IPs as needed
+          - "192.168.0.1"
+          - "192.168.0.220"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - target_label: __address__
+        replacement: snmp-exporter:9116  # Use the service name from docker-compose

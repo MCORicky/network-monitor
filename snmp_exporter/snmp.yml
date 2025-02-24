@@ -1,0 +1,18 @@
+modules:
+  if_mib_v3:
+    version: 3
+    sec_name: "local"              # SNMPv3 username
+    security_level: authPriv        # Can be noAuthNoPriv, authNoPriv, or authPriv
+    auth_protocol: SHA              # Or MD5, if you use that
+    auth_password: "snmpmonitor" # Your SNMPv3 authentication password
+    priv_protocol: AES              # Or DES
+    priv_password: "snmpmonitor" # Your SNMPv3 privacy password
+    walk:
+      - 1.3.6.1.2.1.2              # Example OID for IF-MIB
+    metrics:
+      - name: ifInOctets
+        oid: 1.3.6.1.2.1.2.2.1.10
+        type: counter
+      - name: ifOutOctets
+        oid: 1.3.6.1.2.1.2.2.1.16
+        type: counter

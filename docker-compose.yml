@@ -46,5 +46,14 @@ services:
     container_name: dashboard
     ports:
       - "8080:80"
+      
+  snmp-exporter:
+    image: prom/snmp-exporter:latest
+    container_name: snmp-exporter
+    ports:
+      - "9116:9116"
+    volumes:
+      - ./snmp_exporter/snmp.yml:/etc/snmp_exporter/snmp.yml
 volumes:
   grafana_data:
+
